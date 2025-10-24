@@ -9,4 +9,6 @@ public interface AeropuertoService {
     List<Aeropuerto> obtenerTodosLosAeropuertos();
     Optional<Aeropuerto> obtenerAeropuertoPorId(Integer id);
     Aeropuerto crearAeropuerto(Aeropuerto aeropuerto);
+    Aeropuerto actualizarAeropuerto(Integer id, Aeropuerto aeropuerto);
+    void eliminarAeropuerto(Integer id);
 }

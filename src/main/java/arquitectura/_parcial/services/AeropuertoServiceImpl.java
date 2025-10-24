@@ -30,4 +30,26 @@ public class AeropuertoServiceImpl implements AeropuertoService {
     public Aeropuerto crearAeropuerto(Aeropuerto aeropuerto) {
         return aeropuertoRepository.save(aeropuerto);
     }
+
+    @Override
+    public Aeropuerto actualizarAeropuerto(Integer id, Aeropuerto aeropuertoActualizado) {
+        Optional<Aeropuerto> aeropuertoExistente = aeropuertoRepository.findById(id);
+
+        if (aeropuertoExistente.isPresent()) {
+            Aeropuerto aeropuerto = aeropuertoExistente.get();
+            aeropuerto.setNombre(aeropuertoActualizado.getNombre());
+            return aeropuertoRepository.save(aeropuerto);
+        } else {
+            throw new RuntimeException("Aeropuerto no encontrado con ID: " + id);
+        }
+    }
+
+    @Override
+    public void eliminarAeropuerto(Integer id) {
+        if (aeropuertoRepository.existsById(id)) {
+            aeropuertoRepository.deleteById(id);
+        } else {
+            throw new RuntimeException("Aeropuerto no encontrado con ID: " + id);
+        }
+    }
 }

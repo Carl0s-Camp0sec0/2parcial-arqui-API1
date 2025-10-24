@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/aeropuertos")
 public class AeropuertoController {
 
@@ -31,4 +32,15 @@ public class AeropuertoController {
     public Aeropuerto crearAeropuerto(@RequestBody Aeropuerto aeropuerto) {
         return aeropuertoService.crearAeropuerto(aeropuerto);
     }
+
+    @PutMapping("/actualizar/{id}")
+    public Aeropuerto actualizarAeropuerto(@PathVariable Integer id, @RequestBody Aeropuerto aeropuerto) {
+        return aeropuertoService.actualizarAeropuerto(id, aeropuerto);
+    }
+
+    @DeleteMapping("/eliminar/{id}")
+    public void eliminarAeropuerto(@PathVariable Integer id) {
+        aeropuertoService.eliminarAeropuerto(id);
+    }
+
 }
